@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 太阳系模拟器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 3D 渲染容器 -->
+        <main id="scene-container"></main>
+
+        <!-- 左侧面板：太阳系科普小知识（内容由模块 18 buildBeltPanel 动态生成） -->
+        <aside id="belt-panel"></aside>
+
+        <!-- 右侧面板：行星信息 -->
+        <aside id="legend">
+            <h2>行星信息</h2>
+            <!-- 图例条目：data-name / data-type 属性驱动（模块 17：buildLegend 绑定交互） -->
+            <ul id="legend-list">
+                <li data-name="太阳" data-type="star">
+                    <span class="dot" style="background:#ffcc44"></span>
+                    <span class="name">太阳</span>
+                    <span class="meta">恒星</span>
+                </li>
+                <li data-name="水星" data-type="planet">
+                    <span class="dot" style="background:#9c8e84"></span>
+                    <span class="name">水星</span>
+                    <span class="meta">0.24 年</span>
+                </li>
+                <li data-name="金星" data-type="planet">
+                    <span class="dot" style="background:#e6c46a"></span>
+                    <span class="name">金星</span>
+                    <span class="meta">0.62 年</span>
+                </li>
+                <li data-name="地球" data-type="planet">
+                    <span class="dot" style="background:#3d78c8"></span>
+                    <span class="name">地球</span>
+                    <span class="meta">1.00 年</span>
+                </li>
+                <li data-name="火星" data-type="planet">
+                    <span class="dot" style="background:#c1553b"></span>
+                    <span class="name">火星</span>
+                    <span class="meta">1.88 年</span>
+                </li>
+                <li data-name="木星" data-type="planet">
+                    <span class="dot" style="background:#c8a06a"></span>
+                    <span class="name">木星</span>
+                    <span class="meta">11.86 年</span>
+                </li>
+                <li data-name="土星" data-type="planet">
+                    <span class="dot" style="background:#d9c08a"></span>
+                    <span class="name">土星</span>
+                    <span class="meta">29.46 年</span>
+                </li>
+                <li data-name="天王星" data-type="planet">
+                    <span class="dot" style="background:#7fc4cf"></span>
+                    <span class="name">天王星</span>
+                    <span class="meta">84.0 年</span>
+                </li>
+                <li data-name="海王星" data-type="planet">
+                    <span class="dot" style="background:#3f66d4"></span>
+                    <span class="name">海王星</span>
+                    <span class="meta">164.8 年</span>
+                </li>
+                <li data-name="月球" data-type="moon">
+                    <span class="dot" style="background:#c9c9c9"></span>
+                    <span class="name">月球</span>
+                    <span class="meta">27.3 天</span>
+                </li>
+                <li data-name="哈雷彗星" data-type="comet">
+                    <span class="dot" style="background:#bfe3ff"></span>
+                    <span class="name">哈雷彗星</span>
+                    <span class="meta">75.3 年</span>
+                </li>
+            </ul>
+            <div id="hint-bar">拖拽旋转 · 滚轮缩放 · 点击天体聚焦</div>
+        </aside>
+
+        <!-- 底部控制栏 -->
+        <footer id="controls">
+            <div class="group">
+                <button id="btn-pause" type="button">暂停</button>
+                <button id="btn-reset" type="button">重置视角</button>
+            </div>
+
+            <div class="group">
+                <button id="btn-view-front" type="button">正视</button>
+                <button id="btn-view-top" type="button">俯视</button>
+                <button id="btn-view-side" type="button">侧视</button>
+            </div>
+
+            <div class="group slider">
+                <label for="speed">时间倍速</label>
+                <input id="speed" type="range" min="0" max="1000" value="400">
+                <span id="speed-value" class="value">40 天/秒</span>
+            </div>
+
+            <div class="group slider">
+                <label for="rotate-speed">太阳系旋转倍速</label>
+                <input id="rotate-speed" type="range" min="0" max="20" value="10">
+                <span id="rotate-value" class="value">10x</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- 加载页 -->
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>正在构建太阳系…</p>
+    </div>
+
+    <!-- 依赖库与脚本（按顺序加载） -->
+    <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
